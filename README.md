@@ -16,6 +16,8 @@ pip install requirements.txt
 
 2. ### Create a .env file and add your slack bot oath token
 
+   SLACK_OATH_TOKEN = "xxxx"
+   SLACK_APP_TOKEN = "xxxx"
 
 3. ### Start the bolt server
 
