@@ -1,18 +1,24 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline, TextIteratorStreamer
+from transformers import (
+    AutoTokenizer,
+    AutoModelForCausalLM,
+    pipeline,
+    TextIteratorStreamer,
+)
+
 
 def load():
-    model_name_or_path = r'E:\huggingface\hub\models--meta-llama--Llama-2-7b-chat-hf\snapshots\c1b0db933684edbfe29a06fa47eb19cc48025e93'
+    model_name_or_path = r"meta-llama--Llama-2-7b-chat-hf"
 
-    tokenizer = AutoTokenizer.from_pretrained(model_name_or_path,
-                                            use_fast=True)
+    tokenizer = AutoTokenizer.from_pretrained(model_name_or_path, use_fast=True)
     streamer = TextIteratorStreamer(tokenizer)
 
-    model = AutoModelForCausalLM.from_pretrained(model_name_or_path,
-            trust_remote_code=True,
-            device_map = "cuda:0",
-            load_in_4bit = True
+    model = AutoModelForCausalLM.from_pretrained(
+        model_name_or_path,
+        trust_remote_code=True,
+        device_map="cuda:0",
+        load_in_4bit=True,
     )
-        
+
     pipe = pipeline(
         "text-generation",
         model=model,
@@ -20,11 +26,11 @@ def load():
         temperature=0.1,
         top_p=0.95,
         repetition_penalty=1.15,
-        )
-    
+    )
+
     return tokenizer, streamer, model, pipe
 
 
 def generate(pipe, input, max_new_tokens):
-    response = pipe(input, max_new_tokens=max_new_tokens)[0]['generated_text']
+    response = pipe(input, max_new_tokens=max_new_tokens)[0]["generated_text"]
     return response
