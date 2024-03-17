@@ -1,0 +1,26 @@
+scanner:
+    diff_only: True
+    linter: pycodestyle  # flake8
+
+pycodestyle:  # flake8
+    max-line-length: 100  # Default is 79 in PEP 8
+    ignore:  # Errors and warnings to ignore
+        - W504  # line break after binary operator
+        - E402  # module level import not at top of file
+        - E731  # do not assign a lambda expression, use a def
+        - C406  # Unnecessary list literal - rewrite as a dict literal.
+        - E741  # ambiguous variable name
+
+no_blank_comment: True
+descending_issues_order: False
+
+message:
+    opened:
+        header: "Hello @{name}! Thanks for opening this PR. "
+
+        footer: "Do see the [Hitchhiker's guide to code style](https://goo.gl/hqbW4r)"
+
+    updated:
+        header: "Hello @{name}! Thanks for updating this PR. "
+        footer: ""
+    no_errors: "There are currently no PEP 8 issues detected in this Pull Request. Cheers! :beers: "
