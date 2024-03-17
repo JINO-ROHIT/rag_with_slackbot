@@ -7,7 +7,7 @@ from transformers import (
 
 
 def load():
-    model_name_or_path = r"meta-llama--Llama-2-7b-chat-hf"
+    model_name_or_path = r"Llama-2-7b-chat-hf"
 
     tokenizer = AutoTokenizer.from_pretrained(model_name_or_path, use_fast=True)
     streamer = TextIteratorStreamer(tokenizer)
